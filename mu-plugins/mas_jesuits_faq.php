@@ -32,6 +32,22 @@ function mas_jesuits_faq(){
         'menu_icon' => 'dashicons-format-image'
     ));
 
+    // Past Jesuits
+    register_post_type('past-jesuits', array(
+        'show_in_rest' => false,
+        'has_archive' => false,
+        'supports'     => array('title', 'editor', 'page-attributes', 'thumbnail'),
+        'public'       => true,
+        'labels'       => array(
+            'name'          => 'Past Jesuits',
+            'add_new_item'  => 'Add new Past Jesuit',
+            'edit_item'     => 'Edit Past Jesuit',
+            'all_items'     => 'All Past Jesuits',
+            'singular_name' => 'Past Jesuit'
+        ),
+        'menu_icon' => 'dashicons-groups'
+    ));
+
 }
 
 add_action('init', 'mas_jesuits_faq');
