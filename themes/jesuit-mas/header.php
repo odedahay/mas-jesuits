@@ -27,16 +27,40 @@
               </div>              
             </button>
             <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-                <ul class="navbar-nav navbar-nav-custom">
-                    <li class="nav-item"><a href="<?php echo site_url();?>" <?php if (!is_page()) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?> >Home</a></li>
-                    <li class="nav-item"><a href="<?php echo site_url('/about-us');?>"  <?php if (is_page('about-us')) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?> >About Us</a></li>
-                    <li class="nav-item"><a href="<?php echo site_url('/our-history/foundation');?>" <?php if (is_page('our-history') or wp_get_post_parent_id(0) == 186) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?>>Our History</a></li>
-                    <li class="nav-item"><a href="<?php echo site_url('/mission/spirituality');?>" <?php if (is_page('mission') or wp_get_post_parent_id(0) == 331) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?>>Mission</a></li>
-                    <li class="nav-item"><a href="<?php echo site_url('/vocation');?>" <?php if (is_page('vocation')) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?>>Vocation</a></li>
-                    <li class="nav-item"><a href="<?php echo site_url('/offering');?>" <?php if (is_page('offering')) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?>>Offering</a></li>
-                    <li class="nav-item"><a href="<?php echo site_url('/contact-us');?>" <?php if (is_page('contact-us')) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?> >Contact Us</a></li>
-                </ul>
+                <nav>
+                    <ul class="navbar-nav navbar-nav-custom">
+                        <li class="nav-item"><a href="<?php echo site_url();?>" <?php if (!is_page()) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?> >Home</a></li>
+                        <li class="nav-item has-dropdown">
+                            <a href="#" class="nav-link">MAS Jesuits <i class="bi bi-chevron-down ms-1" style="font-size:11px"></i></a>
+                            <div class="mega-menu">
+                                <div class="mega-menu-column">
+                                    <a href="<?php echo site_url('/about-us');?>" <?php if (is_page('about-us')) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?> >About Us</a>
+                                    <a href="<?php echo site_url('/our-history/foundation');?>" <?php if (is_page('our-history') or wp_get_post_parent_id(0) == 186) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?>>Our History</a>
+                                    <a href="<?php echo site_url('/mission/spirituality');?>" <?php if (is_page('mission') or wp_get_post_parent_id(0) == 331) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?>>Mission</a>
+                                    <a href="<?php echo esc_url(site_url('past-jesuits')); ?>" <?php if (get_post_type() == 'past-jesuits' or is_page('past-jesuits')){ echo 'class="nav-link active"';} else{ echo 'class="nav-link"';}; ?>>Past Jesuits</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="<?php echo site_url('/clc');?>" <?php if (is_page('clc')) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?>>Christian Life Community</a></li>
+                        <li class="nav-item"><a href="<?php echo site_url('/vocation');?>" <?php if (is_page('vocation')) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?>>Vocation</a></li>
+                        <li class="nav-item"><a href="<?php echo site_url('/offering');?>" <?php if (is_page('offering')) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?>>Offering</a></li>
+                        <li class="nav-item"><a href="<?php echo site_url('/rebuilding-kingsmead');?>" <?php if (is_page('rebuilding-kingsmead')) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?>>Rebuilding Kingsmead</a></li>
+                        <li class="nav-item"><a href="<?php echo site_url('/contact-us');?>" <?php if (is_page('contact-us')) {echo 'class="nav-link active"'; }else{ echo 'class="nav-link"';}?> >Contact Us</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
       </nav>
 </div>
+<script>
+    // JavaScript for handling dropdowns on smaller screens
+    document.addEventListener("DOMContentLoaded", function() {
+        const dropdownToggles = document.querySelectorAll('.has-dropdown');
+
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                this.querySelector('.mega-menu').classList.toggle('show');
+            });
+        });
+    });
+</script>

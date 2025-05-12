@@ -67,4 +67,13 @@ add_shortcode('history_content', function($atts, $content = null){
     return $output;
 });
 
+function custom_post_type_init() {
+    register_post_type('your_custom_post_type', array(
+        'label' => 'Custom Post Type',
+        'public' => true,
+        'supports' => array('title', 'editor', 'thumbnail', 'page-attributes'),
+    ));
+}
+add_action('init', 'custom_post_type_init');
+
 

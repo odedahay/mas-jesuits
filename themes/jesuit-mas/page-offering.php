@@ -16,8 +16,9 @@
     <div class="container">
       <div class="row generic-content-container">
         <div class="col-md-6 d-flex align-items-center">
-          
+          <div>
           <p><?php the_field('page_intro'); ?></p>
+          </div>
         </div>
         <div class="col-md-6">
             <?php the_post_thumbnail('offeringLandscape'); ?>

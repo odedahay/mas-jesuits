@@ -1,7 +1,11 @@
 /*
 Theme Name: Jesuit MAS Website
-Author: Ode Dahay
-Version: 1.0
+Theme URI: https://mas-jesuits.org/
+Author: Rod Dahay
+Author URI: https://mas-jesuits.org/
+Description: This is my custom theme
+Version: 1.2
+
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,400&family=Satisfy&display=swap');
@@ -80,6 +84,12 @@ body {
 
 .nav-underline .nav-link:hover {
   color: #007bff;
+}
+
+@media screen and (max-width: 768px) {
+ .nav-link:hover {
+    color: #fff;
+  }
 }
 
 .nav-underline .active {
@@ -221,6 +231,8 @@ a.link-footer:hover{
     color: #b1b1b1;
 }
 
+
+
 .bg-green{
   background-color: var(--bg-green);
 }
@@ -264,7 +276,13 @@ a.link-footer:hover{
 .side-nav--li a:hover{
   background-color:rgba(0,0,0,.15);
 }
-
+hr {
+  border: none;
+  height: 1px;
+  /* Set the hr color */
+  color: #c4c4c4;  /* old IE */
+  background-color: #c4c4c4;  /* Modern Browsers */
+}
 /******* history sidenav **********/
 
 .position-sticky2{
@@ -708,6 +726,74 @@ blockquote.trx_addons_blockquote_style_2 {
   }
 }
 
+ul.navbar-nav li{
+  position: relative;
+}
+
+/*************** drop down ******************/
+.mega-menu{
+  display: none;
+  position: absolute;
+  top:40px;
+  left: 0;
+  width: 180px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+.mega-menu-column{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.mega-menu-column a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+}
+
+ul.navbar-nav li:hover .mega-menu {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  nav {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  ul.navbar-nav {
+      width: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  ul.navbar-nav li {
+      margin: 10px 0;
+  }
+
+  .mega-menu {
+    width: 220px;
+      position: static;
+      width: auto;
+      box-shadow: none;
+      display: none; /* Hide by default for smaller screens */
+      
+  }
+
+  .mega-menu.show {
+      display: block; /* Show on click */
+  }
+
+  .mega-menu-column {
+      padding: 10px;
+      background-color: rgba(0, 0, 0,1);
+      padding: 0 30px 0px 30px;
+  }
+} 
+
+
 .site-header--mas-logo{
     width: 200px;
     transition: width .3s ease-out;
@@ -764,7 +850,7 @@ blockquote.trx_addons_blockquote_style_2 {
 ul.navbar-nav-custom li a{
   font-family: 'Playfair Display', serif;
     font-weight: 400;
-    margin-right: 40px;
+    margin-right: 25px;
     color: #fff;
     
 }
@@ -852,6 +938,11 @@ ul.navbar-nav-custom li a.active{
 .hero-section--subtitle{
     font-size: 1.6rem;
     font-family: 'Playfair Display', serif;
+}
+
+.hero-section img,
+.container img{
+  max-width: 100%;
 }
 /*************** body ***************/
 .section-container-about{
@@ -1386,3 +1477,32 @@ input[type=reset].wpcf7-form-control {
 input[type=submit].wpcf7-form-control:hover{
   background-color: #4180dd;
 } 
+
+/*************** Past Jesuits ******************/
+ul.table-contents{
+  padding-left: 0;
+} 
+ul.table-contents li{
+  list-style: none;
+  margin-bottom: 15px;
+}
+ul.table-contents li a{
+  text-decoration: none;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  background-color: transparent;
+  color: #444;
+  cursor: pointer;
+  padding: 10px 8px;
+  transition: 0.4s;
+}
+
+ul.table-contents li a:hover{
+  background-color: #faeebe;
+}
+
+/*** Search ***/
+.clear-icon{
+  cursor: pointer;
+  display: none;
+}

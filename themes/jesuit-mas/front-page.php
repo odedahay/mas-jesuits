@@ -319,6 +319,37 @@
     </div>
   </div>
 </section>
+<section class="content-section bg-grey">
+  <div class="container">
+    <div class="row g-5 generic-content-container">
+      <?php  $RebuildingKingsmeadPage = array(
+          'page_id' => '543'
+            );
+            $queryFour = new WP_Query( $RebuildingKingsmeadPage );
+            // Check that we have query results.
+            if ( $queryFour->have_posts() ) {
+            
+                // Start looping over the query results.
+                while ( $queryFour->have_posts() ) {
+            
+                    $queryFour->the_post(); ?>
+
+                    <div class="col-md-6">
+                      <?php the_post_thumbnail('offeringLandscape'); ?>
+                    </div>
+                    <div class="col-md-6">
+                      <h2 class="section-title">Rebuilding Kingsmead</h2>
+                      <a href="<?php echo site_url('/rebuilding-kingsmead');?>" class="btn btn-secondary btn-lg font-white">
+                          <i class="bi bi-chevron-right"></i>   READ MORE
+                      </a>
+                    </div>
+            <?php } 
+            } 
+        wp_reset_postdata(); 
+      ?>
+    </div>
+  </div>
+</section>
 
 <section class="content-section bg-green">
   <div class="container">
