@@ -28,9 +28,9 @@
       <div class="col-md-12">
         
         <?php the_content(); ?>
-        <div class="d-flex align-items-center">
-          <h3 class="sub-section-subtitle my-5">Table of Contents</h3>
-          <div class="filter-container ms-3 d-flex align-items-center">
+        <div class="d-flex align-sm-items-center flex-lg-row flex-column">
+          <h3 class="sub-section-subtitle mt-5 mb-md-3 mb-lg-5">Table of Contents</h3>
+          <div class="filter-container ms-sm-0 ms-md-0 ms-lg-3 d-flex align-items-center">
             <input type="text" class="form-control search" id="name-filter" placeholder="Filter by Name">
             <div class="clear-icon ms-2" id="clear-filter"><i class="bi bi-x-circle" style="font-size: 24px"></i></div>
           </div>
@@ -38,7 +38,7 @@
         
         <hr>
         <div class="accordion-container">
-          <div class="row" id="table-contents">
+          <div class="d-flex justify-content-start flex-lg-row flex-column" id="table-contents">
             <?php
             $faqPosts = new WP_Query(array(
               'posts_per_page' => -1,
@@ -53,15 +53,15 @@
               $faqPosts->the_post();
               $counter++;
 
-              if ($counter % 15 == 1) {
+              if ($counter % 18 == 1) {
                 // Start a new column
-                echo '<div class="col-md-4"><ul class="table-contents">';
+                echo '<div class=""><ul class="table-contents">';
               } ?>
 
               <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
 
               <?php
-              if ($counter % 15 == 0 || $counter == $faqPosts->post_count) {
+              if ($counter % 18 == 0 || $counter == $faqPosts->post_count) {
                 // Close the column
                 echo '</ul></div>';
               }
@@ -77,37 +77,78 @@
 
 <?php } ?>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     // Filter by name
     var nameFilterInput = document.getElementById("name-filter");
     var tableContents = document.getElementById("table-contents");
     var clearFilterIcon = document.getElementById("clear-filter");
+    
+    // Create message element
+    var noResultsMessage = document.createElement("div");
+    noResultsMessage.className = "alert alert-info mt-3";
+    noResultsMessage.style.display = "none";
+    
+    // Insert message after the table
+    tableContents.parentNode.insertBefore(noResultsMessage, tableContents.nextSibling);
+
+    // Function to clear the filter
+    function clearFilter() {
+        nameFilterInput.value = "";
+        var links = tableContents.querySelectorAll("li a");
+
+        links.forEach(function(link){
+            link.parentNode.style.display = "block";
+        });
+
+        // hide the clear icon
+        clearFilterIcon.style.display = "none";
+        
+        // Show initial message
+        noResultsMessage.style.display = "none";
+            tableContents.style.display = "block";
+    }
 
     nameFilterInput.addEventListener("input", function () {
-      var filterValue = nameFilterInput.value.toLowerCase();
-      var links = tableContents.querySelectorAll("li a");
+        var filterValue = nameFilterInput.value.toLowerCase();
+        var links = tableContents.querySelectorAll("li a");
+        var hasVisibleItems = false;
 
-      links.forEach(function (link) {
-        var title = link.textContent.toLowerCase();
-        link.parentNode.style.display = title.indexOf(filterValue) > -1 ? "block" : "none";
-      });
+        links.forEach(function (link) {
+            var title = link.textContent.toLowerCase();
+            var isVisible = title.indexOf(filterValue) > -1;
+            link.parentNode.style.display = isVisible ? "block" : "none";
+            if (isVisible) hasVisibleItems = true;
+        });
 
-       // Show/hide the clear icon based on input value
-       clearFilterIcon.style.display = filterValue.length > 0 ? "block" : "none";
+        // Show/hide the clear icon based on input value
+        clearFilterIcon.style.display = filterValue.length > 0 ? "block" : "none";
+
+        // Show/hide message and table based on filter value and results
+        if (!hasVisibleItems && filterValue.length > 0) {
+            noResultsMessage.textContent = `No results found for "${filterValue}". Please try a different name.`;
+            noResultsMessage.style.display = "block";
+            tableContents.style.display = "none";
+        } else {
+            noResultsMessage.style.display = "none";
+            tableContents.style.display = "block";
+        }
     });
 
-    clearFilterIcon.addEventListener("click", function(){
-      nameFilterInput.value = "";
-      var links = tableContents.querySelectorAll("li a");
+    // Add event listener for the clear icon
+    clearFilterIcon.addEventListener("click", clearFilter);
 
-      links.forEach(function(link){
-        link.parentNode.style.display = "block";
-      });
-
-      // hide the clear icon
-      clearFilterIcon.style.display = "none";
+    // Add event listener for the Esc key
+    nameFilterInput.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") {
+            clearFilter();
+            // Optional: blur the input field
+            nameFilterInput.blur();
+        }
     });
 
-  });
+    // Initial state
+    noResultsMessage.style.display = "none";
+    tableContents.style.display = "block";
+});
 </script>
 <?php get_footer(); ?>

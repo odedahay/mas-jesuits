@@ -1487,7 +1487,12 @@ input[type=submit].wpcf7-form-control:hover{
 /*************** Past Jesuits ******************/
 ul.table-contents{
   padding-left: 0;
-} 
+}
+@media (max-width: 768px){
+  ul.table-contents{
+    margin-bottom: 0px;
+  }
+}
 ul.table-contents li{
   list-style: none;
   margin-bottom: 15px;
@@ -1507,8 +1512,115 @@ ul.table-contents li a:hover{
   background-color: #faeebe;
 }
 
+.profile-past-priest-img {
+  float: left;
+  margin: 0 20px 0px 0; /* top right bottom left */
+  max-width: 200px; /* adjust based on your needs */
+  width: 100%;
+  height: auto;
+  border-radius: 4px; /* optional: adds rounded corners */
+  clear: both; 
+}
+.content-after-image {
+  clear: both; /* ensures content starts below the image */
+  margin-top: 20px; /* adds some space between image and content */
+}
+
+/* For responsive design */
+@media (max-width: 768px) {
+  .profile-past-priest-img{
+      float: none;
+      margin: 0 0 20px 0;
+      max-width:50%;
+  }
+  .content-after-image {
+    margin-top: 0; /* remove extra margin on mobile */
+}
+}
+
 /*** Search ***/
 .clear-icon{
   cursor: pointer;
   display: none;
+}
+
+.alert-info {
+  background-color: #cce5ff;
+  border-color: #b8daff;
+  color: #004085;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 15px;
+}
+
+/******* generic sidenav **********/
+.generic-sidebar{
+  padding-left:20px;
+}
+@media (max-width: 768px) {
+  .generic-sidebar{
+    padding-left:0;
+    border-bottom: 1px solid var(--bg-grey);
+  }
+}
+
+.generic-sidebar ul{
+  list-style: disc;
+  
+}
+.generic-sidebar ul li{
+  /* font-size: 1.125rem; */
+  line-height: 1.65;
+  font-weight: 300;
+  margin: 0 0 10px 0;
+}
+.generic-sidebar a{
+  font-weight: 300;
+  text-decoration: none;
+  background-color: transparent;
+  transition: all .3s ease-out;
+  background-size: 100% 0%;
+  background-position: 0 calc(100% - 0.1em);
+  transition: background-size 0.25s cubic-bezier(0.785,0.135,0.15,0.86) 0s;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  will-change: transform; 
+  background-image: linear-gradient(to right, #f9eb4f 0%, #f9eb4f 100%) !important;
+  color: #000;
+  background-color: transparent !important;
+}
+
+.generic-sidebar a:hover{
+  background-size: 100% 100%;
+}
+
+/* Default desktop layout */
+.generic-content-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.generic-content-container .col-md-8 {
+  order: 1;
+}
+
+.generic-content-container .col-md-4 {
+  order: 2;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .generic-content-container .col-md-8 {
+      order: 2;
+  }
+  
+  .generic-content-container .col-md-4 {
+      order: 1;
+      margin-bottom: 30px;
+  }
+
+  .generic-sidebar {
+      position: relative !important;
+      top: 0 !important;
+  }
 }

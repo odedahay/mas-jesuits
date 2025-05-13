@@ -76,4 +76,47 @@ function custom_post_type_init() {
 }
 add_action('init', 'custom_post_type_init');
 
+// Add ACF fields for sidebar
+if(function_exists('acf_add_local_field_group')):
+
+    acf_add_local_field_group(array(
+        'key' => 'group_rebuilding_kingsmead',
+        'title' => 'Rebuilding Kingsmead Sidebar',
+        'fields' => array(
+            array(
+                'key' => 'field_sidebar',
+                'label' => 'Sidebar Content',
+                'name' => 'sidebar',
+                'type' => 'wysiwyg',
+                'instructions' => 'Add content for the sidebar',
+                'required' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'tabs' => 'all',
+                'toolbar' => 'full',
+                'media_upload' => 1,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template',
+                    'operator' => '==',
+                    'value' => 'page-rebuilding-kingsmead.php',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+    ));
+    
+endif;
+
 
