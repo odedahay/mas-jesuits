@@ -375,6 +375,12 @@ hr {
   position: relative;
   margin-bottom: 1.8rem;
 }
+@media (min-width: 768px) {
+  .history-flex-img img{
+    width:revert-layer !important;
+    height: auto;
+  }
+}
 .history-flex-img h4{
   position: absolute;
   top: 5px;
@@ -382,13 +388,13 @@ hr {
 .history-flex-para{
   padding-top: 20px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #cfd958;
+  /* border-bottom: 1px solid #cfd958; */
 }
 
 @media (min-width: 768px) {
   .history-flex-para{
     padding-top: 0px;
-    border-bottom: none
+    /* border-bottom: none */
   }
 }
 
