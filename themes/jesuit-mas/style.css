@@ -377,6 +377,7 @@ hr {
 }
 @media (min-width: 768px) {
   .history-flex-img img{
+    /* min-width: 350px!important; */
     width:revert-layer !important;
     height: auto;
   }
@@ -1623,4 +1624,25 @@ ul.table-contents li a:hover{
       position: relative !important;
       top: 0 !important;
   }
+}
+
+/* Photo sizes */
+
+.size-medium{
+  max-width: 265px!important;
+}
+
+.aligncenter{
+  display: block;
+  margin: 20px auto ;
+}
+
+.alignleft{
+  float: left;
+  margin: 0 20px 10px 0;
+}
+
+.alignright{
+  float: right;
+  margin: 0 0px 10px 20px;
 }
